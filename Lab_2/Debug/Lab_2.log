@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\alexp\Desktop\АлгСтр\LAB_2\Lab_2\Source.cpp(19,14): warning C4244:  аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\alexp\Desktop\АлгСтр\LAB_2\Lab_2\Source.cpp(20,24): warning C4018:  <: несоответствие типов со знаком и без знака
+  Lab_2.vcxproj -> C:\Users\alexp\Desktop\АлгСтр\LAB_2\Lab_2\Debug\Lab_2.exe
