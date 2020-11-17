@@ -9,7 +9,7 @@ int main() {
 	double measurings_qs[10], sum1 = 0;
 	double measurings_is[10], sum2 = 0;
 	clock_t begin_time, end_time;
-	cout << "Left - InsertionSort, right - QuickSort<<\n";
+	cout << "Left - InsertionSort, right - QuickSort\n";
 	for (int i = 0; i < 5; i++)
 	{
 		a = new int[dimension];
