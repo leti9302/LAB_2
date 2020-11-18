@@ -9,98 +9,98 @@ namespace UnitTest
 	{
 	public:
 
-		int* a;
+		int* array;
 
 		TEST_METHOD_INITIALIZE(setUP)
 		{
 			srand(time(NULL));
-			a = new int[10];
+			array = new int[10];
 			for (int i = 0; i < 10; i++)
-				a[i] = rand();
+				array[i] = rand();
 		}
 
 		TEST_METHOD_CLEANUP(cleanUp) 
 		{
-			delete [] a;
+			delete [] array;
 		}
 
 		TEST_METHOD(bin_test)
 		{
 			for (int i = 0; i < 10; i++)
-				a[i] = i+1;
-			Assert::AreEqual(BinarySearch(a, 9, 0, 9), 8);
+				array[i] = i+1;
+			Assert::AreEqual(BinarySearch(array, 9, 0, 9), 8);
 		}
 
 		TEST_METHOD(bin_test_2)
 		{
 			for (int i = 0; i < 10; i++)
-				a[i] = i + 1;
-			Assert::AreEqual(BinarySearch(a, 5, 0, 9), 4);
+				array[i] = i + 1;
+			Assert::AreEqual(BinarySearch(array, 5, 0, 9), 4);
 		}
 
 		TEST_METHOD(bin_test_3)
 		{
 			for (int i = 0; i < 10; i++)
-				a[i] = i + 1;
-			Assert::AreEqual(BinarySearch(a, 1, 0, 9), 0);
+				array[i] = i + 1;
+			Assert::AreEqual(BinarySearch(array, 1, 0, 9), 0);
 		}
 
 		TEST_METHOD(bin_test_not_found)
 		{
 			for (int i = 0; i < 10; i++)
-				a[i] = i + 1;
-			Assert::AreEqual(BinarySearch(a, 11, 0, 9), -1);
+				array[i] = i + 1;
+			Assert::AreEqual(BinarySearch(array, 11, 0, 9), -1);
 		}
 
-		TEST_METHOD(check_if_sorted_test_for_unsorted)
+		TEST_METHOD(checkIfSorted_test_for_unsorted)
 		{
-			Assert::IsFalse(check_if_sorted(a, 10));
+			Assert::IsFalse(checkIfSorted(array, 10));
 		}
 
-		TEST_METHOD(check_if_sorted_test_for_sorted)
+		TEST_METHOD(checkIfSorted_test_for_sorted)
 		{
 			for (int i = 0; i < 10; i++)
-				a[i] = i + 1;
-			Assert::IsTrue(check_if_sorted(a, 10));
+				array[i] = i + 1;
+			Assert::IsTrue(checkIfSorted(array, 10));
 		}
 
-		TEST_METHOD(check_if_sorted_test_for_char_sorted)
+		TEST_METHOD(checkIfSorted_test_for_char_sorted)
 		{
-			char b[10] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
-			Assert::IsTrue(check_if_sorted(b, 10));
+			char array_char[10] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
+			Assert::IsTrue(checkIfSorted(array_char, 10));
 		}
 
-		TEST_METHOD(check_if_sorted_test_for_char_unsorted)
+		TEST_METHOD(checkIfSorted_test_for_char_unsorted)
 		{
-			char b[10] = { 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a' };
-			Assert::IsFalse(check_if_sorted(b, 10));
+			char array_char[10] = { 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a' };
+			Assert::IsFalse(checkIfSorted(array_char, 10));
 		}
 
 		TEST_METHOD(QuickSort_test)
 		{
-			QuickSort(a, 0, 9);
-			Assert::IsTrue(check_if_sorted(a, 10));
+			QuickSort(array, 0, 9);
+			Assert::IsTrue(checkIfSorted(array, 10));
 		}
 
 		TEST_METHOD(InsertionSort_test)
 		{
-			InsertionSort(a, 10);
-			Assert::IsTrue(check_if_sorted(a, 10));
+			InsertionSort(array, 10);
+			Assert::IsTrue(checkIfSorted(array, 10));
 		}
 
 		TEST_METHOD(BogoSort_test)
 		{
-			BogoSort(a, 10);
-			Assert::IsTrue(check_if_sorted(a, 10));
+			BogoSort(array, 10);
+			Assert::IsTrue(checkIfSorted(array, 10));
 		}
 
 		TEST_METHOD(CountingSort_test)
 		{
-			char b[10];
+			char array_char[10];
 			for (int i = 0; i < 10; i++)
-				b[i] = rand() % 128;
-			CountingSort(b, 10);
-			Assert::IsTrue(check_if_sorted(b, 10));
+				array_char[i] = rand() % 128;
+			CountingSort(array_char, 10);
+			Assert::IsTrue(checkIfSorted(array_char, 10));
 		}
 	};
 }

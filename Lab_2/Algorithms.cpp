@@ -1,73 +1,73 @@
 #include "Algorithms.h"
 
-int BinarySearch(int* a, int k, int start, int end)
+int BinarySearch(int *array, int key, int left, int right)
 {
-	int m, l = start, r = end;
+	int midd;
 	while (1)
 	{
-		m = (l + r) / 2;
-		if (k < a[m]) r = m - 1;
-		else if (k > a[m]) l = m + 1;
-		else return m;
-		if (l > r) return -1;
+		midd = (left + right) / 2;
+		if (key < array[midd]) right = midd - 1;
+		else if (key > array[midd]) left = midd + 1;
+		else return midd;
+		if (left > right) return -1;
 	}
 }
 
-void QuickSort(int* a, int l, int r)
+void QuickSort(int *array, int left, int right)
 {
-	int i = l, j = r, temp, piv = a[(i + j) / 2];
+	int i = left, j = right, temp, pivot = array[(i + j) / 2];
 
 	while (i <= j)
 	{
-		while (a[i] < piv)
+		while (array[i] < pivot)
 			i++;
-		while (a[j] > piv)
+		while (array[j] > pivot)
 			j--;
 		if (i <= j)
 		{
-			temp = a[i];
-			a[i] = a[j];
-			a[j] = temp;
+			temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
 			i++;
 			j--;
 		}
 	}
-	if (j > l)
-		QuickSort(a, l, j);
-	if (i < r)
-		QuickSort(a, i, r);
+	if (j > left)
+		QuickSort(array, left, j);
+	if (i < right)
+		QuickSort(array, i, right);
 }
 
-void InsertionSort(int *a, int size)
+void InsertionSort(int* array, int size)
 {
-	int i, j, k;
+	int i, j, key;
 	for (i = 1; i < size; i++)
 	{
-		k = a[i];
+		key = array[i];
 		j = i - 1;
-		while (j >= 0 && a[j] > k)
+		while (j >= 0 && array[j] > key)
 		{
-			a[j + 1] = a[j];
+			array[j + 1] = array[j];
 			j = j - 1;
 		}
-		a[j + 1] = k;
+		array[j + 1] = key;
 	}
 }
 
-void BogoSort(int* a, int size)
+void BogoSort(int* array, int size)
 {
 	int temp, random;
-	while (!check_if_sorted(a, size))
+	while (!checkIfSorted(array, size))
 		for (int i = 0; i < size; i++)
 		{
 			random = rand() % size;
-			temp = a[i];
-			a[i] = a[random];
-			a[random] = temp;
+			temp = array[i];
+			array[i] = array[random];
+			array[random] = temp;
 		}
 }
 
-void CountingSort(char* a, int size)
+void CountingSort(char* array, int size)
 {
 	int max = 0, i, j = 0;
 	int* count;
@@ -75,21 +75,21 @@ void CountingSort(char* a, int size)
 
 	for (i = 0; i < size; i++)
 	{
-		if (max < int(a[i]))
-			max = int(a[i]);
+		if (max < int(array[i]))
+			max = int(array[i]);
 	}
 	count = new int[max + 1];
 	for (i = 0; i <= max; i++)
 		count[i] = 0;
 	for (i = 0; i < size; i++)
 	{
-		count[int(a[i])]++;
+		count[int(array[i])]++;
 	}
 	for (i = 0; i <= max; i++)
 	{
 		while (count[i] != 0)
 		{
-			a[j] = i;
+			array[j] = i;
 			count[i]--;
 			j++;
 		}
@@ -97,16 +97,16 @@ void CountingSort(char* a, int size)
 
 }
 
-bool check_if_sorted(int* a, int size)
+bool checkIfSorted(int* array, int size)
 {
 	for (int i = 0; i <  size - 1; i++)
-		if (a[i] > a[i + 1]) return false;
+		if (array[i] > array[i + 1]) return false;
 	return true;
 }
 
-bool check_if_sorted(char* a, int size)
+bool checkIfSorted(char* array, int size)
 {
 	for (int i = 0; i < size - 1; i++)
-		if (a[i] > a[i + 1]) return false;
+		if (array[i] > array[i + 1]) return false;
 	return true;
 }
